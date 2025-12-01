@@ -86,7 +86,7 @@ export default function Home() {
               <div className="md:w-1/2 mb-8 md:mb-0">
                 <div className="relative h-80 md:h-96 rounded-lg overflow-hidden">
                   <img 
-                    src="/images/chef.jpg" 
+                    src="/images/chef.png" 
                     alt="Il nostro chef" 
                     className="w-full h-full object-cover"
                   />

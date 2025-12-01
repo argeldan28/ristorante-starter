@@ -27,7 +27,7 @@ export default function Hero({ title, subtitle }) {
           </div>
           <div className="order-first lg:order-last">
             <div className="w-full h-64 md:h-80 rounded-lg overflow-hidden shadow-sm">
-              <img src="/images/hero-16-9.jpg" alt="Sala del ristorante con luce calda" className="w-full h-full object-cover" loading="lazy" />
+              <img src="/images/hero-restaurant.png" alt="Sala del ristorante con luce calda" className="w-full h-full object-cover" loading="lazy" />
             </div>
           </div>
         </div>
