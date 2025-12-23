@@ -39,4 +39,3 @@ npm run start
 
 ## Deploy
 Consigliato: Vercel. Collegare il repo GitHub e deploy automatico. Impostare variabili d'ambiente per API keys (SENDGRID_API_KEY, SANITY_TOKEN, etc.)
-
