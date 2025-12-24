@@ -11,17 +11,17 @@ export default function Home() {
     {
       title: 'Cucina Locale',
       description: 'Piatti tradizionali realizzati con ingredienti a km 0 e tecniche moderne.',
-      icon: '🍽️'
+      image: '/images/specialty1.jpg'
     },
     {
       title: 'Vini Selezionati',
       description: 'Una cantina con oltre 200 etichette, accuratamente selezionate dai nostri sommelier.',
-      icon: '🍷'
+      image: '/images/specialty2.jpg'
     },
     {
       title: 'Dolci Artigianali',
       description: 'Dessert fatti in casa che chiudono in dolcezza la tua esperienza culinaria.',
-      icon: '🍰'
+      image: '/images/specialty3.jpg'
     }
   ];
 
@@ -34,7 +34,7 @@ export default function Home() {
     {
       quote: "Atmosfera accogliente e personale cordiale. Tornerò sicuramente!",
       author: "Giulia M.",
-      rating: 5
+      rating: 4
     },
     {
       quote: "La migliore carbonara che abbia mai mangiato fuori Roma. Complimenti allo chef!",
@@ -92,9 +92,17 @@ export default function Home() {
 
             <div className="grid md:grid-cols-3 gap-8">
               {specialties.map((item, index) => (
-                <div key={index} className="text-center p-6 hover:shadow-lg transition-shadow duration-300 rounded-lg">
-                  <div className="text-4xl mb-4">{item.icon}</div>
-                  <h3 className="text-xl font-medium mb-2">{item.title}</h3>
+                <div key={index} className="text-center p-6 hover:shadow-xl transition-all duration-300 rounded-lg bg-white group border border-gray-50">
+                  <div className="relative w-full h-56 mb-6 rounded-lg overflow-hidden shadow-md">
+                    <Image 
+                      src={item.image} 
+                      alt={item.title} 
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                  </div>
+                  <h3 className="text-xl font-medium mb-2 font-serif text-bosco">{item.title}</h3>
                   <p className="text-grigio">{item.description}</p>
                 </div>
               ))}
@@ -168,7 +176,7 @@ export default function Home() {
 
             <div className="text-center mt-12">
               <Link 
-                href="https://www.tripadvisor.it/Restaurant_Review-g187791-d12345678-Reviews-Ristorante_Aura-Rome_Lazio.html" 
+                href="/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-flex items-center text-bosco hover:text-oro transition"

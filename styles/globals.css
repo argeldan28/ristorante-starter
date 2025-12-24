@@ -9,12 +9,12 @@ html, body, #__next {
 body {
   background-color: theme('colors.ivory');
   color: theme('colors.antracite');
-  font-family: Inter, Roboto, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: var(--font-inter), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.font-serif { font-family: "Playfair Display", serif; }
+.font-serif { font-family: var(--font-playfair), serif; }
 
 /* Focus styles */
 :focus {

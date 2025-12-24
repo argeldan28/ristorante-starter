@@ -1,8 +1,10 @@
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import MenuSection from '../components/MenuSection';
+import AnimatedSection from '../components/AnimatedSection';
 
 const menuData = {
   antipasti: {
@@ -11,18 +13,19 @@ const menuData = {
       {
         name: 'Bruschetta al Pomodoro',
         description: 'Pane tostato con pomodoro fresco, aglio e basilico',
-        price: '8,00'
+        price: '8,00',
+        image: '/images/menu1.jpg'
       },
       {
         name: 'Carpaccio di Manzo',
         description: 'Sottili fette di manzo crudo con scaglie di parmigiano e rucola',
-        price: '14,00'
-      },
+        price: '14,00',
+        image: '/images/menu2.jpg'},
       {
         name: 'Antipasto della Casa',
         description: 'Selezione di salumi e formaggi locali con confetture fatte in casa',
-        price: '16,00'
-      }
+        price: '16,00',
+        image: '/images/menu3.jpg'}
     ]
   },
   primi: {
@@ -31,12 +34,14 @@ const menuData = {
       {
         name: 'Pasta al Tartufo Nero',
         description: 'Tagliatelle fresche con crema di tartufo nero e funghi',
-        price: '18,00'
+        price: '18,00',
+        image: '/images/menu4.jpg'
       },
       {
         name: 'Risotto allo Zafferano',
         description: 'Risotto cremoso allo zafferano con midollo e grana padano',
-        price: '16,00'
+        price: '16,00',
+        image: '/images/menu5.jpg'
       }
     ]
   },
@@ -46,12 +51,14 @@ const menuData = {
       {
         name: 'Filetto di Manzo',
         description: 'Con riduzione al vino rosso e patate al forno',
-        price: '28,00'
+        price: '28,00',
+        image: '/images/menu6.jpg'
       },
       {
         name: 'Branzino al Sale',
         description: 'Intero al forno con erbe aromatiche e verdure di stagione',
-        price: '26,00'
+        price: '26,00',
+        image: '/images/menu7.jpg'
       }
     ]
   },
@@ -61,12 +68,14 @@ const menuData = {
       {
         name: 'Tiramisù',
         description: 'Classico dolce al caffè con mascarpone e cacao',
-        price: '7,00'
+        price: '7,00',
+        image: '/images/menu8.jpg'
       },
       {
         name: 'Panna Cotta',
         description: 'Con salsa ai frutti di bosco',
-        price: '6,50'
+        price: '6,50',
+        image: '/images/menu9.jpg'
       }
     ]
   }
@@ -75,6 +84,7 @@ const menuData = {
 export default function Menu() {
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     const controlNavbar = () => {
@@ -106,20 +116,21 @@ export default function Menu() {
 
       <main className="flex-grow py-16 bg-ivory">
         <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-12">
+          <AnimatedSection className="text-center mb-12" direction="up">
             <h1 className="font-serif text-4xl text-bosco mb-4">Il Nostro Menu</h1>
             <p className="text-grigio max-w-2xl mx-auto">
               Scopri la nostra proposta gastronomica realizzata con ingredienti freschi e di stagione.
             </p>
             <div className="w-20 h-1 bg-oro mx-auto mt-4"></div>
-          </div>
+          </AnimatedSection>
           
-          <div className="bg-white rounded-lg shadow-sm p-6 md:p-8">
+          <AnimatedSection className="bg-white rounded-lg shadow-sm p-6 md:p-8" delay={0.2}>
             {Object.values(menuData).map((section, index) => (
               <MenuSection 
                 key={index}
                 title={section.title}
                 items={section.items}
+                onImageClick={setSelectedImage}
               />
             ))}
             
@@ -133,9 +144,29 @@ export default function Menu() {
                 </p>
               </div>
             </div>
-          </div>
+          </AnimatedSection>
         </div>
       </main>
+
+      {/* Image Modal / Lightbox */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedImage(null)}
+            className="fixed inset-0 z-[60] bg-black bg-opacity-90 flex items-center justify-center p-4 cursor-pointer"
+          >
+            <motion.img
+              layoutId={selectedImage}
+              src={selectedImage}
+              alt="Zoomed dish"
+              className="max-w-full max-h-[90vh] object-contain rounded-lg"
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <Footer />
     </div>
